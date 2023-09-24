@@ -1,7 +1,7 @@
 .mouse-trails {
 	height: 48px;
 	width: 48px;
-	scale: 0.22 0.22;
+	transform: scale(0.22);
 	border-radius: 50%;
 
 	position: fixed;
