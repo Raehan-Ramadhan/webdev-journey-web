@@ -17,12 +17,15 @@ function Header({}: Props) {
 			<div className="nav">
 				<a href="#">
 					<IoLogoInstagram />
+					Instagram
 				</a>
 				<a href="#">
 					<IoLogoGithub />
+					Github
 				</a>
 				<a href="#">
 					<IoLogoDiscord />
+					Discord
 				</a>
 			</div>
 		</div>
