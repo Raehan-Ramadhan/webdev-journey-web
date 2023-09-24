@@ -11,3 +11,14 @@
 	justify-content: space-between;
 	padding: 0 40px;
 }
+
+.nav {
+	display: flex;
+}
+
+.nav > a {
+	padding: 0 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
