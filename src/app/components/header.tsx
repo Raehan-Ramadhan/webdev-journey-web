@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import { IoLogoInstagram, IoLogoGithub, IoLogoDiscord } from "react-icons/io5";
 import "./header.css";
 
 type Props = {};
@@ -14,9 +15,15 @@ function Header({}: Props) {
 				height={70}
 			/>
 			<div className="nav">
-				<a href="#"></a>
-				<a href="#"></a>
-				<a href="#"></a>
+				<a href="#">
+					<IoLogoInstagram />
+				</a>
+				<a href="#">
+					<IoLogoGithub />
+				</a>
+				<a href="#">
+					<IoLogoDiscord />
+				</a>
 			</div>
 		</div>
 	);
