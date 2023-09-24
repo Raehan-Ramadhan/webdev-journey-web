@@ -15,15 +15,27 @@ function Header({}: Props) {
 				height={70}
 			/>
 			<div className="nav">
-				<a href="https://www.instagram.com/a.degu.9955">
+				<a
+					href="https://www.instagram.com/a.degu.9955"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
 					<IoLogoInstagram />
 					&nbsp;Instagram
 				</a>
-				<a href="https://github.com/Raehan-Ramadhan">
+				<a
+					href="https://github.com/Raehan-Ramadhan"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
 					<IoLogoGithub />
 					&nbsp;Github
 				</a>
-				<a href="https://discord.gg/DbM7Sdhqgs">
+				<a
+					href="https://discord.gg/DbM7Sdhqgs"
+					target="_blank"
+					rel="noopener noreferrer"
+				>
 					<IoLogoDiscord />
 					&nbsp;Discord
 				</a>
