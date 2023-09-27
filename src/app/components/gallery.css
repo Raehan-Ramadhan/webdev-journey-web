@@ -24,6 +24,7 @@
 }
 
 .text-container {
+	z-index: 100;
 	width: 50%;
 	padding-right: 25px;
 	display: flex;
