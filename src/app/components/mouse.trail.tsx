@@ -69,6 +69,15 @@ function MouseTrail() {
 	const maxTrails = 24;
 
 	const animateTrails = () => {
+		if (
+			(trails.length != 0 &&
+				trails[0].left === mousePosition.current.x + "px" &&
+				trails[0].top === mousePosition.current.y + "px") ||
+			(mousePosition.current.x && mousePosition.current.y) === 0
+		) {
+			return;
+		}
+
 		const x = mousePosition.current.x;
 		const y = mousePosition.current.y;
 
@@ -78,13 +87,7 @@ function MouseTrail() {
 		};
 
 		setTrails((prevTrails) => {
-			return (
-				(prevTrails.length != 0 &&
-					prevTrails[0].left === mousePosition.current.x + "px" &&
-					prevTrails[0].top === mousePosition.current.y + "px" &&
-					prevTrails) ||
-				[...prevTrails, newTrail].slice(-maxTrails)
-			);
+			return [...prevTrails, newTrail].slice(-maxTrails);
 		});
 	};
 
