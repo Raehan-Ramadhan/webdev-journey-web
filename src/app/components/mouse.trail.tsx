@@ -112,7 +112,7 @@ function MouseTrail() {
 	}, []);
 
 	return (
-		<>
+		<div className="trails">
 			{trails.map((trail, index) => (
 				<div
 					className="mouse-trails"
@@ -125,7 +125,7 @@ function MouseTrail() {
 					}}
 				></div>
 			))}
-		</>
+		</div>
 	);
 }
 export default MouseTrail;
