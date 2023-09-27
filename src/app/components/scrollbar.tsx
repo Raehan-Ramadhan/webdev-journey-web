@@ -18,9 +18,13 @@ function MyScrollBar({ onScroll, children }: Props) {
 				damping: 0.08,
 			});
 
-			scrollbarRef.current.addListener((status: any) => {
-				onScroll(scrollbarRef.current);
-			});
+			if (scrollbarRef.current) {
+				scrollbarRef.current.addListener((status: any) => {
+					if (onScroll) {
+						onScroll(scrollbarRef.current);
+					}
+				});
+			}
 		}
 	});
 
