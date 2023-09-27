@@ -6,7 +6,6 @@ import "./mouse.trail.css";
 interface Trail {
 	left: string;
 	top: string;
-	reachedMousePosition: boolean;
 }
 // .every((element) => element === true);
 function MouseTrail() {
@@ -76,30 +75,19 @@ function MouseTrail() {
 		const newTrail: Trail = {
 			left: x + "px",
 			top: y + "px",
-			reachedMousePosition: false,
 		};
 
 		setTrails((prevTrails) => {
 			if (
-				prevTrails.length === 24 &&
-				prevTrails[1].left === mousePosition.current.x + "px" &&
-				prevTrails[1].top === mousePosition.current.y + "px"
+				prevTrails.length != 0 &&
+				prevTrails[0].left === mousePosition.current.x + "px" &&
+				prevTrails[0].top === mousePosition.current.y + "px"
 			) {
 				return prevTrails;
 			}
 			const updatedTrails = [...prevTrails, newTrail].slice(-maxTrails);
 
-			return updatedTrails.map((trail) => {
-				if (
-					!trail.reachedMousePosition &&
-					trail.left === newTrail.left &&
-					trail.top === newTrail.top
-				) {
-					return { ...trail, reachedMousePosition: true };
-				}
-
-				return trail;
-			});
+			return updatedTrails;
 		});
 	};
 
