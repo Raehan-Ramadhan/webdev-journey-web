@@ -101,7 +101,7 @@ function MouseTrail() {
 	}, []);
 
 	useEffect(() => {
-		const intervalId = setInterval(animateTrails, 5);
+		const intervalId = setInterval(animateTrails, 10);
 
 		return () => {
 			clearInterval(intervalId);
