@@ -78,16 +78,13 @@ function MouseTrail() {
 		};
 
 		setTrails((prevTrails) => {
-			if (
-				prevTrails.length != 0 &&
-				prevTrails[0].left === mousePosition.current.x + "px" &&
-				prevTrails[0].top === mousePosition.current.y + "px"
-			) {
-				return prevTrails;
-			}
-			const updatedTrails = [...prevTrails, newTrail].slice(-maxTrails);
-
-			return updatedTrails;
+			return (
+				(prevTrails.length != 0 &&
+					prevTrails[0].left === mousePosition.current.x + "px" &&
+					prevTrails[0].top === mousePosition.current.y + "px" &&
+					prevTrails) ||
+				[...prevTrails, newTrail].slice(-maxTrails)
+			);
 		});
 	};
 
@@ -104,7 +101,7 @@ function MouseTrail() {
 	}, []);
 
 	useEffect(() => {
-		const intervalId = setInterval(animateTrails, 10);
+		const intervalId = setInterval(animateTrails, 5);
 
 		return () => {
 			clearInterval(intervalId);
