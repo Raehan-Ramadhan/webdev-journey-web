@@ -7,8 +7,9 @@ import MyScrollBar from "./components/scrollbar";
 export default function Home() {
 	return (
 		<>
-			<MyScrollBar />
-			<Gallery />
+			<MyScrollBar>
+				<Gallery />
+			</MyScrollBar>
 			<Navigation />
 			<MouseTrail />
 		</>
