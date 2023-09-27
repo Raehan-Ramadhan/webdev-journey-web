@@ -1,13 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import { IoLogoInstagram, IoLogoGithub, IoLogoDiscord } from "react-icons/io5";
-import "./header.css";
+import "./navigation.css";
 
 type Props = {};
 
-function Header({}: Props) {
+function Navigation({}: Props) {
 	return (
-		<div className="header">
+		<div className="navigation">
 			<Image
 				src="https://cdn.discordapp.com/attachments/598648077078757376/1141024078216577095/graycat6.svg"
 				alt="Logo"
@@ -44,4 +44,4 @@ function Header({}: Props) {
 	);
 }
 
-export default Header;
+export default Navigation;
