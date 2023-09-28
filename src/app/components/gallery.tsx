@@ -48,7 +48,7 @@ export default function Gallery() {
 					</div>
 				</div>
 			</div>
-			<div className="right-side">
+			<div className="right-side pin">
 				<div className="image-container">
 					<div className="image no1"></div>
 					<div className="image no2"></div>

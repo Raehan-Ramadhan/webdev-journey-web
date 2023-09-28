@@ -7,7 +7,7 @@ type Props = {};
 
 function Navigation({}: Props) {
 	return (
-		<div className="navigation">
+		<div className="navigation pin">
 			<Image
 				src="https://cdn.discordapp.com/attachments/598648077078757376/1141024078216577095/graycat6.svg"
 				alt="Logo"

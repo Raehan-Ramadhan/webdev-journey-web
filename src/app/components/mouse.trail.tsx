@@ -115,7 +115,7 @@ function MouseTrail() {
 		<div className="trails">
 			{trails.map((trail, index) => (
 				<div
-					className="mouse-trails"
+					className="mouse-trails pin"
 					key={index}
 					style={{
 						top: trail.top,

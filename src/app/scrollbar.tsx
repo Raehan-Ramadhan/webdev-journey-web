@@ -1,38 +1,28 @@
 "use client";
 
 import Scrollbar from "smooth-scrollbar";
-import { useEffect, useRef } from "react";
-import Gallery from "./components/gallery";
+import { useEffect } from "react";
 
-interface Props {
-	onScroll?: (scrollbar: any) => void;
-}
-
-function MyScrollBar({ onScroll }: Props) {
-	const containerRef = useRef<HTMLDivElement>(null);
-	const scrollbarRef = useRef<Scrollbar>();
-
+function MyScrollBar() {
 	useEffect(() => {
-		if (containerRef.current && !scrollbarRef.current) {
-			scrollbarRef.current = Scrollbar.init(containerRef.current, {
-				damping: 0.08,
-			});
+		const scrollbar = Scrollbar.init(document.body, {
+			damping: 0.08,
+		});
 
-			if (scrollbarRef.current) {
-				scrollbarRef.current.addListener((status: any) => {
-					if (onScroll) {
-						onScroll(scrollbarRef.current);
-					}
-				});
-			}
-		}
+		const listener = (status: { offset: { y: any } }) => {
+			const pins = document.querySelectorAll(".pin");
+			pins.forEach((pinned) => {
+				(pinned as HTMLElement)!.style.transform = `translateY(${status.offset.y}px)`;
+			});
+		};
+		scrollbar?.addListener(listener);
+
+		return () => {
+			scrollbar?.removeListener(listener);
+		};
 	});
 
-	return (
-		<div ref={containerRef} style={{ height: "100vh" }}>
-			<Gallery />
-		</div>
-	);
+	return null;
 }
 
 export default MyScrollBar;
