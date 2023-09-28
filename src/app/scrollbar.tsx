@@ -1,14 +1,14 @@
 "use client";
 
 import Scrollbar from "smooth-scrollbar";
-import { useEffect, useRef, ReactNode } from "react";
+import { useEffect, useRef } from "react";
+import Gallery from "./components/gallery";
 
 interface Props {
 	onScroll?: (scrollbar: any) => void;
-	children: ReactNode;
 }
 
-function MyScrollBar({ onScroll, children }: Props) {
+function MyScrollBar({ onScroll }: Props) {
 	const containerRef = useRef<HTMLDivElement>(null);
 	const scrollbarRef = useRef<Scrollbar>();
 
@@ -30,7 +30,7 @@ function MyScrollBar({ onScroll, children }: Props) {
 
 	return (
 		<div ref={containerRef} style={{ height: "100vh" }}>
-			{children}
+			<Gallery />
 		</div>
 	);
 }
