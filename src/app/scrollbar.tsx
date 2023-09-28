@@ -18,7 +18,8 @@ function MyScrollBar() {
 		scrollbar?.addListener(listener);
 
 		return () => {
-			scrollbar?.removeListener(listener);
+			scrollbar.removeListener(listener);
+			scrollbar.destroy();
 		};
 	});
 
