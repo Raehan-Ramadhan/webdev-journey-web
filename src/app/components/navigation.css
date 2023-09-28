@@ -24,3 +24,8 @@
 	align-items: center;
 	justify-content: center;
 }
+
+.nav > a:hover {
+	text-decoration: underline;
+	color: blue;
+}
