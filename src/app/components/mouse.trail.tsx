@@ -4,8 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import "./mouse.trail.css";
 
 interface Trail {
-	left: string;
-	top: string;
+	x: number;
+	y: number;
 }
 // .every((element) => element === true);
 function MouseTrail() {
@@ -71,21 +71,15 @@ function MouseTrail() {
 	useEffect(() => {
 		const animateTrails = () => {
 			if (
-				(trails.length != 0 &&
-					trails[0].left === mousePosition.current.x + "px" &&
-					trails[0].top === mousePosition.current.y + "px") ||
-				(mousePosition.current.x && mousePosition.current.y) === 0
+				(trails.length &&
+					trails[0].x === mousePosition.current.x &&
+					trails[0].y === mousePosition.current.y) ||
+				!(mousePosition.current.x && mousePosition.current.y)
 			) {
 				return;
 			}
 
-			const x = mousePosition.current.x;
-			const y = mousePosition.current.y;
-
-			const newTrail: Trail = {
-				left: x + "px",
-				top: y + "px",
-			};
+			const newTrail: Trail = mousePosition.current;
 
 			setTrails((prevTrails) => {
 				return [...prevTrails, newTrail].slice(-maxTrails);
@@ -118,8 +112,8 @@ function MouseTrail() {
 					className="mouse-trails pin"
 					key={index}
 					style={{
-						top: trail.top,
-						left: trail.left,
+						top: trail.y,
+						left: trail.x,
 						backgroundColor: colors[index % colors.length],
 						transform: `scale(${scale[index % scale.length]})`,
 					}}
