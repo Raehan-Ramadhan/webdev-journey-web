@@ -21,7 +21,7 @@ function MyScrollBar() {
 			scrollbar.removeListener(listener);
 			scrollbar.destroy();
 		};
-	});
+	}, []);
 
 	return null;
 }
