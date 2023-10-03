@@ -15,12 +15,14 @@ export default function Home() {
 
 	return (
 		<>
+			<div style={{ height: "100vh", width: "100vw" }}></div>
 			<MyScrollBar
 				setScrollPos={(x: number, y: number) => {
 					setScrollPos({ x, y });
 				}}
 			/>
 			<Gallery />
+			<div style={{ height: "100vh", width: "100vw" }}></div>
 			<Navigation />
 			<MouseTrail />
 		</>
