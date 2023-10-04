@@ -67,8 +67,8 @@ function MouseTrail() {
 	];
 
 	const maxTrails = 24;
-	let myReq: number;
-	const animateTrails = () => {
+	const myReq = useRef<number>(0);
+	function animateTrails() {
 		if (
 			!(
 				trails.length &&
@@ -83,13 +83,13 @@ function MouseTrail() {
 				return [...prevTrails, newTrail].slice(-maxTrails);
 			});
 		}
-		myReq = requestAnimationFrame(animateTrails);
-	};
+		myReq.current = requestAnimationFrame(animateTrails);
+	}
 	useEffect(() => {
-		myReq = requestAnimationFrame(animateTrails);
+		myReq.current = requestAnimationFrame(animateTrails);
 
 		return () => {
-			cancelAnimationFrame(myReq);
+			cancelAnimationFrame(myReq.current);
 		};
 	}, []);
 
