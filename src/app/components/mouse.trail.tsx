@@ -67,31 +67,31 @@ function MouseTrail() {
 	];
 
 	const maxTrails = 24;
+	let myReq: number;
+	const animateTrails = () => {
+		if (
+			!(
+				trails.length &&
+				trails[0].x === mousePosition.current.x &&
+				trails[0].y === mousePosition.current.y
+			) &&
+			(mousePosition.current.x || mousePosition.current.y)
+		) {
+			const newTrail: Trail = mousePosition.current;
 
+			setTrails((prevTrails) => {
+				return [...prevTrails, newTrail].slice(-maxTrails);
+			});
+		}
+		myReq = requestAnimationFrame(animateTrails);
+	};
 	useEffect(() => {
-		const animateTrails = () => {
-			if (
-				!(
-					trails.length &&
-					trails[0].x === mousePosition.current.x &&
-					trails[0].y === mousePosition.current.y
-				) &&
-				(mousePosition.current.x || mousePosition.current.y)
-			) {
-				const newTrail: Trail = mousePosition.current;
-
-				setTrails((prevTrails) => {
-					return [...prevTrails, newTrail].slice(-maxTrails);
-				});
-			}
-		};
-
-		const intervalId = setInterval(animateTrails, 10);
+		myReq = requestAnimationFrame(animateTrails);
 
 		return () => {
-			clearInterval(intervalId);
+			cancelAnimationFrame(myReq);
 		};
-	}, [trails, mousePosition]);
+	}, []);
 
 	useEffect(() => {
 		const handleMouseMove = (e: MouseEvent) => {
