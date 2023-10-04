@@ -2,13 +2,13 @@ import { useEffect } from "react";
 import "./gallery.css";
 
 interface Props {
-	scrollPos: { x: number; y: number };
+	scrollPosRef: { x: number; y: number };
 }
 
-export default function Gallery({ scrollPos }: Props) {
+export default function Gallery({ scrollPosRef }: Props) {
 	useEffect(() => {
-		console.log(scrollPos);
-	}, [scrollPos]);
+		console.log(scrollPosRef);
+	}, [scrollPosRef]);
 
 	return (
 		<div className="gallery">
