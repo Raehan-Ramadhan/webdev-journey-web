@@ -1,6 +1,15 @@
+import { useEffect } from "react";
 import "./gallery.css";
 
-export default function Gallery() {
+interface Props {
+	scrollPos: { x: number; y: number };
+}
+
+export default function Gallery({ scrollPos }: Props) {
+	useEffect(() => {
+		console.log(scrollPos);
+	}, [scrollPos]);
+
 	return (
 		<div className="gallery">
 			<div className="left-side">

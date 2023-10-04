@@ -5,13 +5,10 @@ import Navigation from "./components/navigation";
 import MouseTrail from "./components/mouse.trail";
 import MyScrollBar from "./scrollbar";
 import Gallery from "./components/gallery";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 export default function Home() {
 	const [scrollPos, setScrollPos] = useState({ x: 0, y: 0 });
-	useEffect(() => {
-		console.log(scrollPos);
-	}, [scrollPos]);
 
 	return (
 		<>
@@ -21,7 +18,7 @@ export default function Home() {
 					setScrollPos({ x, y });
 				}}
 			/>
-			<Gallery />
+			<Gallery scrollPos={scrollPos} />
 			<div style={{ height: "100vh", width: "100vw" }}></div>
 			<Navigation />
 			<MouseTrail />
