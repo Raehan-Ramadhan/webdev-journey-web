@@ -9,7 +9,6 @@ interface Trail {
 }
 // .every((element) => element === true);
 function MouseTrail() {
-	const [trails, setTrails] = useState<Trail[]>([]);
 	const mousePosition = useRef({ x: 0, y: 0 });
 
 	const colors = [
@@ -68,6 +67,9 @@ function MouseTrail() {
 
 	const maxTrails = 24;
 	const myReq = useRef<number>(0);
+
+	const [trails, setTrails] = useState<Trail[]>([]);
+
 	function animateTrails() {
 		if (
 			!(
@@ -85,6 +87,30 @@ function MouseTrail() {
 		}
 		myReq.current = requestAnimationFrame(animateTrails);
 	}
+
+	// const [trails, setTrails] = useState<Trail[]>(
+	// 	new Array(24).fill({ x: 0, y: 0 })
+	// );
+
+	// function animateTrails() {
+	// 	const newTrails = [...trails];
+
+	// 	let { x, y } = mousePosition.current;
+
+	// 	newTrails.forEach((currentTrail, index) => {
+	// 		currentTrail.x = x;
+	// 		currentTrail.y = y;
+
+	// 		const nextTrail = newTrails[index + 1] || newTrails[0];
+	// 		x += (nextTrail.x - x) * 0.3;
+	// 		y += (nextTrail.y - y) * 0.3;
+	// 	});
+
+	// 	setTrails(newTrails);
+
+	// 	myReq.current = requestAnimationFrame(animateTrails);
+	// }
+
 	useEffect(() => {
 		myReq.current = requestAnimationFrame(animateTrails);
 
