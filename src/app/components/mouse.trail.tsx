@@ -7,30 +7,30 @@ function MouseTrail() {
 	const mousePosition = useRef({ x: 0, y: 0 });
 
 	const colors = [
-		"#FF5733",
-		"#FC732B",
-		"#FF9A24",
-		"#FFC312",
-		"#F0D20B",
-		"#E2F00F",
-		"#B0E91D",
-		"#86D812",
-		"#66CC10",
-		"#4FBF10",
-		"#37B316",
-		"#28A845",
-		"#1B9D52",
-		"#10A892",
-		"#10B5A9",
-		"#12BFFC",
-		"#1091E1",
-		"#1052A7",
-		"#103F77",
-		"#102D47",
-		"#1A1A1A",
-		"#2A2A2A",
-		"#3A3A3A",
-		"#4A4A4A",
+		"#FFBF00",
+		"#FFBF0A",
+		"#FFBF14",
+		"#FFBF1E",
+		"#FFBF28",
+		"#FFBF32",
+		"#FFBF3C",
+		"#FFBF46",
+		"#FFBF50",
+		"#FFBF5A",
+		"#FFBF64",
+		"#FFBF6E",
+		"#FFBF78",
+		"#FFBF82",
+		"#FFBF8C",
+		"#FFBF96",
+		"#FFBFA0",
+		"#FFBFAA",
+		"#FFBFB4",
+		"#FFBFBE",
+		"#FFBFC8",
+		"#FFBFD2",
+		"#FFBFDC",
+		"#FFBFE6",
 	];
 
 	const scale = [
@@ -101,7 +101,7 @@ function MouseTrail() {
 
 	useEffect(() => {
 		const handleMouseMove = (e: MouseEvent) => {
-			mousePosition.current = { x: e.clientX - 24, y: e.clientY - 24 };
+			mousePosition.current = { x: e.clientX - 12, y: e.clientY - 12 };
 		};
 
 		window.addEventListener("mousemove", handleMouseMove);
