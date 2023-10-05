@@ -3,11 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./mouse.trail.css";
 
-interface Trail {
-	x: number;
-	y: number;
-}
-
 function MouseTrail() {
 	const mousePosition = useRef({ x: 0, y: 0 });
 
@@ -65,84 +60,39 @@ function MouseTrail() {
 		"1.00",
 	];
 
-	const maxTrails = 24;
 	const myReq = useRef<number>(0);
 
-	// const [trails, setTrails] = useState<Trail[]>([]);
-
-	// function animateTrails() {
-	// 	if (
-	// 		!(
-	// 			trails.length &&
-	// 			trails[0].x === mousePosition.current.x &&
-	// 			trails[0].y === mousePosition.current.y
-	// 		) &&
-	// 		(mousePosition.current.x || mousePosition.current.y)
-	// 	) {
-	// 		const newTrail: Trail = mousePosition.current;
-
-	// 		setTrails((prevTrails) => {
-	// 			return [...prevTrails, newTrail].slice(-maxTrails);
-	// 		});
-	// 	}
-	// 	myReq.current = requestAnimationFrame(animateTrails);
-	// }
-
-	// const [trails, setTrails] = useState<Trail[]>(
-	// 	new Array(24).fill({ x: 0, y: 0 })
-	// );
-
-	// function animateTrails() {
-	// 	const newTrails = [...trails];
-
-	// 	let { x, y } = mousePosition.current;
-
-	// 	newTrails.forEach((currentTrail, index) => {
-	// 		currentTrail.x = x;
-	// 		currentTrail.y = y;
-
-	// 		const nextTrail = newTrails[index + 1] || newTrails[0];
-	// 		x += (nextTrail.x - x) * 0.3;
-	// 		y += (nextTrail.y - y) * 0.3;
-	// 	});
-
-	// 	setTrails(newTrails);
-
-	// 	myReq.current = requestAnimationFrame(animateTrails);
-	// }
-
-	const trails = useRef<Trail[]>(new Array(24).fill({ x: 0, y: 0 }));
-	const trailsDiv = useRef(
-		trails.current.map((_trail, index) => (
-			<div key={index} className="mouse-trails pin"></div>
-		))
-	);
-
-	useEffect(() => {
-		if (trailsDiv.current) {
-			trailsDiv.current.forEach((trail) => {
-				trail.style.opacity = "0";
-			});
-		}
-	}, [trailsDiv]);
+	const trails = useRef<HTMLDivElement[]>([]);
 
 	function animateTrails() {
 		let { x, y } = mousePosition.current;
+		const trailsPos = new Array(24).fill({ x: 0, y: 0 });
+		trailsPos.forEach((trail, index) => {
+			if (index === 0) {
+				trail.x = x;
+				trail.y = y;
+			}
 
-		trails.current.forEach((trail, index) => {
-			trail.x = x;
-			trail.y = y;
+			trails.current[index].style.left = trail.x + "px";
+			trails.current[index].style.top = trail.y + "px";
 
-			const nextTrail = trails.current[index + 1] || trails.current[0];
-			x += (nextTrail.x - x) * 0.3;
-			y += (nextTrail.y - y) * 0.3;
+			const nextTrailPos = trailsPos[(index + 1) % 24];
+
+			trailsPos[(index + 1) % 24].x =
+				trail.x + (nextTrailPos.x - trail.x) * 0.3;
+
+			trailsPos[(index + 1) % 24].y =
+				trail.y + (nextTrailPos.y - trail.y) * 0.3;
 		});
-
 		myReq.current = requestAnimationFrame(animateTrails);
 	}
 
 	useEffect(() => {
+		trails.current.forEach((trail, index) => {
+			trail.style.backgroundColor = colors[index % colors.length];
+		});
 		myReq.current = requestAnimationFrame(animateTrails);
+		animateTrails();
 
 		return () => {
 			cancelAnimationFrame(myReq.current);
@@ -164,19 +114,63 @@ function MouseTrail() {
 
 	return (
 		<div className="trails">
-			{/* {trails.map((trail, index) => (
+			{new Array(24).fill(0).map((trail, index) => (
 				<div
 					className="mouse-trails pin"
-					key={index}
-					style={{
-						top: trail.y,
-						left: trail.x,
-						backgroundColor: colors[index % colors.length],
-						transform: `scale(${scale[index % scale.length]})`,
-					}}
+					key={trail}
+					ref={(element) => (trails.current[index] = element as HTMLDivElement)}
 				></div>
-			))} */}
+			))}
 		</div>
 	);
 }
 export default MouseTrail;
+
+// interface Trail {
+// 	x: number;
+// 	y: number;
+// }
+// 	const maxTrails = 24;
+
+// const [trails, setTrails] = useState<Trail[]>([]);
+
+// function animateTrails() {
+// 	if (
+// 		!(
+// 			trails.length &&
+// 			trails[0].x === mousePosition.current.x &&
+// 			trails[0].y === mousePosition.current.y
+// 		) &&
+// 		(mousePosition.current.x || mousePosition.current.y)
+// 	) {
+// 		const newTrail: Trail = mousePosition.current;
+
+// 		setTrails((prevTrails) => {
+// 			return [...prevTrails, newTrail].slice(-maxTrails);
+// 		});
+// 	}
+// 	myReq.current = requestAnimationFrame(animateTrails);
+// }
+
+// const [trails, setTrails] = useState<Trail[]>(
+// 	new Array(24).fill({ x: 0, y: 0 })
+// );
+
+// function animateTrails() {
+// 	const newTrails = [...trails];
+
+// 	let { x, y } = mousePosition.current;
+
+// 	newTrails.forEach((currentTrail, index) => {
+// 		currentTrail.x = x;
+// 		currentTrail.y = y;
+
+// 		const nextTrail = newTrails[index + 1] || newTrails[0];
+// 		x += (nextTrail.x - x) * 0.3;
+// 		y += (nextTrail.y - y) * 0.3;
+// 	});
+
+// 	setTrails(newTrails);
+
+// 	myReq.current = requestAnimationFrame(animateTrails);
+// }
