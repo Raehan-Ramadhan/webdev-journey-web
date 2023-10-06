@@ -10,7 +10,8 @@ interface Props {
 	imagesSource: string[];
 	details: {
 		youtube: boolean;
-		span: string;
+		anchor: string;
+		anchorLink: string;
 		header: string;
 		paragraph: string;
 	}[];
@@ -95,18 +96,21 @@ export default function Gallery({ imagesSource, details }: Props) {
 		};
 	}, []);
 
-	console.log(imagesSource);
-
 	return (
 		<div className="gallery" ref={gallery}>
 			<div className="left-side">
 				{details.map((detail, index) => (
 					<div className="details" key={index}>
 						<div className="text-container">
-							<span>
+							<a
+								className="anchor"
+								href={detail.anchorLink}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
 								{detail.youtube ? <AiOutlineYoutube /> : <IoGlobeOutline />}
-								{detail.span}
-							</span>
+								{detail.anchor}
+							</a>
 							<h1>{detail.header}</h1>
 							<p className="desc">{detail.paragraph}</p>
 							<div className="btn"></div>

@@ -13,27 +13,31 @@ export default function Home() {
 
 	const detailsCSSJourney: {
 		youtube: true;
-		span: string;
+		anchor: string;
+		anchorLink: string;
 		header: string;
 		paragraph: string;
 	}[] = [
 		{
 			youtube: true,
-			span: "Original Tutorial",
+			anchorLink: "https://youtu.be/CZIJKkwc8l8",
+			anchor: "Original Tutorial",
 			header: "Smart Mouse Trailer",
 			paragraph:
 				"A really cool mouse trailer that has some pretty smart features",
 		},
 		{
 			youtube: true,
-			span: "Original Tutorial",
+			anchorLink: "https://youtu.be/5a8NyGLlorI",
+			anchor: "Original Tutorial",
 			header: "Mouse Follow Logo",
 			paragraph:
 				"A logo given superpower to follow the mouse direction and creates fragments of itself",
 		},
 		{
 			youtube: true,
-			span: "Original Tutorial",
+			anchorLink: "https://youtu.be/htGfnF1zN4g",
+			anchor: "Original Tutorial",
 			header: "Mouse Button Hover Effect",
 			paragraph:
 				"A cool button with mouse hover effect that will highlight the area around the mouse",
