@@ -116,7 +116,7 @@ function MouseTrail() {
 			{new Array(24).fill(0).map((trail, index) => (
 				<div
 					className="mouse-trails pin"
-					key={trail}
+					key={index}
 					ref={(element) => (trails.current[index] = element as HTMLDivElement)}
 				></div>
 			))}
