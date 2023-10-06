@@ -101,7 +101,7 @@ export default function Gallery() {
 			<div className="left-side">
 				<div className="details">
 					<div className="text-container">
-						<span>{}Github.com</span>
+						<span>Github.com</span>
 						<h1>Code hosting platform</h1>
 						<p className="desc">
 							It lets you and others work together on projects from anywhere.
@@ -145,22 +145,15 @@ export default function Gallery() {
 			</div>
 			<div className="right-side" ref={rightSide}>
 				<div className="image-container">
-					<div
-						className="image no1"
-						ref={(element) => (images.current[0] = element as HTMLDivElement)}
-					></div>
-					<div
-						className="image no2"
-						ref={(element) => (images.current[1] = element as HTMLDivElement)}
-					></div>
-					<div
-						className="image no3"
-						ref={(element) => (images.current[2] = element as HTMLDivElement)}
-					></div>
-					<div
-						className="image no4"
-						ref={(element) => (images.current[3] = element as HTMLDivElement)}
-					></div>
+					{new Array(4).fill(0).map((image, index) => (
+						<div
+							className={`image no${index + 1}`}
+							key={index}
+							ref={(element) =>
+								(images.current[index] = element as HTMLDivElement)
+							}
+						></div>
+					))}
 				</div>
 			</div>
 		</div>
