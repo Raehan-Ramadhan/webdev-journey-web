@@ -4,7 +4,16 @@ import "./gallery.css";
 import { useEffect, useRef } from "react";
 import Scrollbar from "smooth-scrollbar";
 
-export default function Gallery() {
+interface Props {
+	imagesSource: string[];
+	details: {
+		span: string;
+		header: string;
+		paragraph: string;
+	}[];
+}
+
+export default function Gallery({ imagesSource, details }: Props) {
 	const gallery = useRef<HTMLDivElement>(null);
 	const rightSide = useRef<HTMLDivElement>(null);
 	const images = useRef<HTMLDivElement[]>([]);
@@ -83,61 +92,32 @@ export default function Gallery() {
 		};
 	}, []);
 
+	console.log(imagesSource);
+
 	return (
 		<div className="gallery" ref={gallery}>
 			<div className="left-side">
-				<div className="details">
-					<div className="text-container">
-						<span>Github.com</span>
-						<h1>Code hosting platform</h1>
-						<p className="desc">
-							It lets you and others work together on projects from anywhere.
-						</p>
-						<div className="btn"></div>
+				{details.map((detail, index) => (
+					<div className="details" key={index}>
+						<div className="text-container">
+							<span>{detail.span}</span>
+							<h1>{detail.header}</h1>
+							<p className="desc">{detail.paragraph}</p>
+							<div className="btn"></div>
+						</div>
 					</div>
-				</div>
-				<div className="details">
-					<div className="text-container">
-						<span>Instagram.com</span>
-						<h1>Photo and video sharing</h1>
-						<p className="desc">
-							A simple, fun & creative way to capture, edit & share photos,
-							videos & messages.
-						</p>
-						<div className="btn"></div>
-					</div>
-				</div>
-				<div className="details">
-					<div className="text-container">
-						<span>Spotify.com</span>
-						<h1>Media service provider</h1>
-						<p className="desc">
-							A digital music, podcast, and video service that gives you access
-							to millions of content.
-						</p>
-						<div className="btn"></div>
-					</div>
-				</div>
-				<div className="details">
-					<div className="text-container">
-						<span>Youtube.com</span>
-						<h1>Online video platform</h1>
-						<p className="desc">
-							An online video sharing and social media platform accessible
-							worldwide.
-						</p>
-						<div className="btn"></div>
-					</div>
-				</div>
+				))}
 			</div>
+
 			<div className="right-side" ref={rightSide}>
 				<div className="image-container">
-					{new Array(4).fill(0).map((image, index) => (
+					{imagesSource.map((image, index) => (
 						<div
 							className="image"
 							style={{
-								background: `url(https://source.unsplash.com/BvAwzPQRRis) no-repeat
+								background: `url(${image}) no-repeat
 							center/cover`,
+								zIndex: imagesSource.length - index,
 							}}
 							key={index}
 							ref={(element) =>

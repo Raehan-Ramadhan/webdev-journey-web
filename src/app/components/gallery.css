@@ -61,30 +61,6 @@ p.desc {
 	height: 100%;
 }
 
-.no1 {
-	background: url(https://source.unsplash.com/BvAwzPQRRis) no-repeat
-		center/cover;
-	z-index: 5;
-}
-
-.no2 {
-	background: url(https://source.unsplash.com/SX3RyfGM8-s) no-repeat
-		center/cover;
-	z-index: 4;
-}
-
-.no3 {
-	background: url(https://source.unsplash.com/rbsjRvdrkqQ) no-repeat
-		center/cover;
-	z-index: 3;
-}
-
-.no4 {
-	background: url(https://source.unsplash.com/niUkImZcSP8) no-repeat
-		center/cover;
-	z-index: 2;
-}
-
 @media screen and (max-width: 1700px) {
 	.text-container,
 	.image-container {
