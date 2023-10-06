@@ -1,21 +1,64 @@
-import { useEffect } from "react";
+"use client";
+
 import "./gallery.css";
+import { useEffect, useRef } from "react";
+import Scrollbar from "smooth-scrollbar";
 
-interface Props {
-	scrollPosRef: { x: number; y: number };
-}
+export default function Gallery() {
+	const gallery = useRef<HTMLDivElement>(null);
+	const rightSide = useRef<HTMLDivElement>(null);
+	const images = useRef<HTMLDivElement[]>([]);
 
-export default function Gallery({ scrollPosRef }: Props) {
 	useEffect(() => {
-		console.log(scrollPosRef);
-	}, [scrollPosRef]);
+		const scrollbar = Scrollbar.get(document.body);
+
+		const galleryTop = gallery.current?.getBoundingClientRect().top;
+		const galleryBottom = gallery.current
+			? gallery.current.getBoundingClientRect().bottom - window.innerHeight
+			: 0;
+
+		const listener = (status: { offset: any }) => {
+			console.log(status.offset, galleryTop, galleryBottom);
+			if (
+				rightSide.current &&
+				galleryTop &&
+				galleryTop < status.offset.y &&
+				galleryBottom > status.offset.y
+			) {
+				// Pin Image
+				rightSide.current.style.transform = `translateY(${
+					status.offset.y - galleryTop
+				}px)`;
+
+				// Clip Image
+
+				let a =
+					((status.offset.y - galleryTop) / galleryBottom) *
+					images.current.length;
+				a = Math.min(Math.max(a, 0), images.current.length);
+
+				images.current.forEach((image, Index) => {
+					image.style.clipPath = `inset(0 0 ${Math.max(
+						(a - Index) * 100,
+						0
+					)}% 0)`;
+				});
+			}
+		};
+
+		scrollbar?.addListener(listener);
+
+		return () => {
+			scrollbar?.removeListener(listener);
+		};
+	}, []);
 
 	return (
-		<div className="gallery">
+		<div className="gallery" ref={gallery}>
 			<div className="left-side">
 				<div className="details">
 					<div className="text-container">
-						<span>github.com</span>
+						<span>{}Github.com</span>
 						<h1>Code hosting platform</h1>
 						<p className="desc">
 							It lets you and others work together on projects from anywhere.
@@ -57,12 +100,24 @@ export default function Gallery({ scrollPosRef }: Props) {
 					</div>
 				</div>
 			</div>
-			<div className="right-side pin">
+			<div className="right-side" ref={rightSide}>
 				<div className="image-container">
-					<div className="image no1"></div>
-					<div className="image no2"></div>
-					<div className="image no3"></div>
-					<div className="image no4"></div>
+					<div
+						className="image no1"
+						ref={(element) => (images.current[0] = element as HTMLDivElement)}
+					></div>
+					<div
+						className="image no2"
+						ref={(element) => (images.current[1] = element as HTMLDivElement)}
+					></div>
+					<div
+						className="image no3"
+						ref={(element) => (images.current[2] = element as HTMLDivElement)}
+					></div>
+					<div
+						className="image no4"
+						ref={(element) => (images.current[3] = element as HTMLDivElement)}
+					></div>
 				</div>
 			</div>
 		</div>

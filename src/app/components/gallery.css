@@ -3,8 +3,6 @@
 }
 
 .right-side {
-	position: relative;
-	top: -100vh;
 	width: 50vw;
 	height: 100vh;
 	display: flex;
