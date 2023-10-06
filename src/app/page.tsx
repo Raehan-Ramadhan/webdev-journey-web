@@ -38,7 +38,7 @@ export default function Home() {
 
 	return (
 		<>
-			<div style={{ height: "100vh", width: "100vw" }}></div>
+			<div className={styles.title}> Design. Develop. Build. </div>
 			<MyScrollBar />
 			<Gallery imagesSource={imagesCSSJourney} details={detailsCSSJourney} />
 			<div style={{ height: "100vh", width: "100vw" }}></div>
