@@ -3,7 +3,7 @@ import Navigation from "./components/navigation";
 import MouseTrail from "./components/mouse.trail";
 import MyScrollBar from "./scrollbar";
 import Gallery from "./components/gallery";
-import { isDesktop } from "react-device-detect";
+import { isMobile } from "react-device-detect";
 
 export default function Home() {
 	const imagesCSSJourney: string[] = [
@@ -52,7 +52,7 @@ export default function Home() {
 			<Gallery imagesSource={imagesCSSJourney} details={detailsCSSJourney} />
 			<div style={{ height: "100vh", width: "100vw" }}></div>
 			<Navigation />
-			{isDesktop && <MouseTrail />}
+			{!isMobile && <MouseTrail />}
 		</>
 	);
 }
