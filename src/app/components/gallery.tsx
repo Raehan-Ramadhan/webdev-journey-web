@@ -8,17 +8,60 @@ export default function Gallery() {
 	const gallery = useRef<HTMLDivElement>(null);
 	const rightSide = useRef<HTMLDivElement>(null);
 	const images = useRef<HTMLDivElement[]>([]);
+	const offsetY = useRef();
 
 	useEffect(() => {
 		const scrollbar = Scrollbar.get(document.body);
 
-		const galleryTop = gallery.current?.getBoundingClientRect().top;
-		const galleryBottom = gallery.current
+		let galleryTop = gallery.current?.getBoundingClientRect().top;
+		let galleryBottom = gallery.current
 			? gallery.current.getBoundingClientRect().bottom - window.innerHeight
 			: 0;
 
+		const refreshVariable = () => {
+			galleryTop =
+				gallery.current && offsetY.current
+					? gallery.current.getBoundingClientRect().top + offsetY.current
+					: galleryTop;
+			galleryBottom =
+				gallery.current && offsetY.current
+					? gallery.current.getBoundingClientRect().bottom -
+					  window.innerHeight +
+					  offsetY.current
+					: galleryBottom;
+			if (
+				offsetY.current &&
+				rightSide.current &&
+				galleryTop &&
+				galleryTop < offsetY.current &&
+				galleryBottom > offsetY.current
+			) {
+				// Pin Image
+				rightSide.current.style.transform = `translateY(${
+					offsetY.current - galleryTop
+				}px)`;
+
+				// Clip Image
+
+				let a =
+					((offsetY.current - galleryTop) / galleryBottom) *
+					images.current.length;
+				a = Math.min(Math.max(a, 0), images.current.length);
+
+				images.current.forEach((image, Index) => {
+					image.style.clipPath = `inset(0 0 ${Math.max(
+						(a - Index) * 100,
+						0
+					)}% 0)`;
+				});
+			}
+			console.log(galleryTop, galleryBottom);
+		};
+
+		window.onresize = refreshVariable;
+
 		const listener = (status: { offset: any }) => {
-			console.log(status.offset, galleryTop, galleryBottom);
+			offsetY.current = status.offset.y;
 			if (
 				rightSide.current &&
 				galleryTop &&
