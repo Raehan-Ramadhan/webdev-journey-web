@@ -8,8 +8,6 @@ export default function Gallery() {
 	const gallery = useRef<HTMLDivElement>(null);
 	const rightSide = useRef<HTMLDivElement>(null);
 	const images = useRef<HTMLDivElement[]>([]);
-	const offsetY = useRef();
-
 	useEffect(() => {
 		const scrollbar = Scrollbar.get(document.body);
 
@@ -18,35 +16,30 @@ export default function Gallery() {
 			? gallery.current.getBoundingClientRect().bottom - window.innerHeight
 			: 0;
 
+		let offsetY = 0;
+
 		const refreshVariable = () => {
-			galleryTop =
-				gallery.current && offsetY.current
-					? gallery.current.getBoundingClientRect().top + offsetY.current
-					: galleryTop;
-			galleryBottom =
-				gallery.current && offsetY.current
-					? gallery.current.getBoundingClientRect().bottom -
-					  window.innerHeight +
-					  offsetY.current
-					: galleryBottom;
-			if (
-				offsetY.current &&
-				rightSide.current &&
-				galleryTop &&
-				galleryTop < offsetY.current &&
-				galleryBottom > offsetY.current
-			) {
+			offsetY = scrollbar ? scrollbar.offset.y : offsetY;
+			galleryTop = gallery.current
+				? gallery.current.getBoundingClientRect().top + offsetY
+				: galleryTop;
+			galleryBottom = gallery.current
+				? gallery.current.getBoundingClientRect().bottom -
+				  window.innerHeight +
+				  offsetY
+				: galleryBottom;
+			if (rightSide.current && galleryTop) {
 				// Pin Image
-				rightSide.current.style.transform = `translateY(${
-					offsetY.current - galleryTop
-				}px)`;
+				rightSide.current.style.transform = `translateY(${Math.min(
+					Math.max(offsetY - galleryTop, 0),
+					galleryBottom - galleryTop
+				)}px)`;
 
 				// Clip Image
 
 				let a =
-					((offsetY.current - galleryTop) / galleryBottom) *
-					images.current.length;
-				a = Math.min(Math.max(a, 0), images.current.length);
+					((offsetY - galleryTop) / galleryBottom) * images.current.length;
+				a = Math.min(Math.max(a, 0), images.current.length - 1);
 
 				images.current.forEach((image, Index) => {
 					image.style.clipPath = `inset(0 0 ${Math.max(
@@ -55,30 +48,24 @@ export default function Gallery() {
 					)}% 0)`;
 				});
 			}
-			console.log(galleryTop, galleryBottom);
 		};
 
 		window.onresize = refreshVariable;
 
 		const listener = (status: { offset: any }) => {
-			offsetY.current = status.offset.y;
-			if (
-				rightSide.current &&
-				galleryTop &&
-				galleryTop < status.offset.y &&
-				galleryBottom > status.offset.y
-			) {
+			if (rightSide.current && galleryTop) {
 				// Pin Image
-				rightSide.current.style.transform = `translateY(${
-					status.offset.y - galleryTop
-				}px)`;
+				rightSide.current.style.transform = `translateY(${Math.min(
+					Math.max(status.offset.y - galleryTop, 0),
+					galleryBottom - galleryTop
+				)}px)`;
 
 				// Clip Image
 
 				let a =
 					((status.offset.y - galleryTop) / galleryBottom) *
 					images.current.length;
-				a = Math.min(Math.max(a, 0), images.current.length);
+				a = Math.min(Math.max(a, 0), images.current.length - 1);
 
 				images.current.forEach((image, Index) => {
 					image.style.clipPath = `inset(0 0 ${Math.max(
@@ -147,7 +134,11 @@ export default function Gallery() {
 				<div className="image-container">
 					{new Array(4).fill(0).map((image, index) => (
 						<div
-							className={`image no${index + 1}`}
+							className="image"
+							style={{
+								background: `url(https://source.unsplash.com/BvAwzPQRRis) no-repeat
+							center/cover`,
+							}}
 							key={index}
 							ref={(element) =>
 								(images.current[index] = element as HTMLDivElement)
