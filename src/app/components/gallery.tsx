@@ -3,10 +3,13 @@
 import "./gallery.css";
 import { useEffect, useRef } from "react";
 import Scrollbar from "smooth-scrollbar";
+import { IoGlobeOutline } from "react-icons/io5";
+import { AiOutlineYoutube } from "react-icons/ai";
 
 interface Props {
 	imagesSource: string[];
 	details: {
+		youtube: boolean;
 		span: string;
 		header: string;
 		paragraph: string;
@@ -100,7 +103,10 @@ export default function Gallery({ imagesSource, details }: Props) {
 				{details.map((detail, index) => (
 					<div className="details" key={index}>
 						<div className="text-container">
-							<span>{detail.span}</span>
+							<span>
+								{detail.youtube ? <AiOutlineYoutube /> : <IoGlobeOutline />}
+								{detail.span}
+							</span>
 							<h1>{detail.header}</h1>
 							<p className="desc">{detail.paragraph}</p>
 							<div className="btn"></div>

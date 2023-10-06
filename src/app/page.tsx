@@ -12,23 +12,27 @@ export default function Home() {
 	];
 
 	const detailsCSSJourney: {
+		youtube: true;
 		span: string;
 		header: string;
 		paragraph: string;
 	}[] = [
 		{
+			youtube: true,
 			span: "Original Tutorial",
 			header: "Smart Mouse Trailer",
 			paragraph:
 				"A really cool mouse trailer that has some pretty smart features",
 		},
 		{
+			youtube: true,
 			span: "Original Tutorial",
 			header: "Mouse Follow Logo",
 			paragraph:
 				"A logo given superpower to follow the mouse direction and creates fragments of itself",
 		},
 		{
+			youtube: true,
 			span: "Original Tutorial",
 			header: "Mouse Button Hover Effect",
 			paragraph:

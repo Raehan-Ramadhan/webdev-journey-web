@@ -61,6 +61,23 @@ p.desc {
 	height: 100%;
 }
 
+span {
+	display: flex;
+	align-items: center;
+}
+
+span svg {
+	padding: 0 5px 0 0;
+	width: 30px;
+	height: 20px;
+}
+
+span:hover {
+	color: blue;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
 @media screen and (max-width: 1700px) {
 	.text-container,
 	.image-container {
