@@ -38,7 +38,7 @@
 	font-size: 0.5vw;
 }
 
-h {
+.header {
 	font-size: 2.2vw;
 	font-weight: 500;
 }
@@ -90,7 +90,7 @@ p.desc {
 		font-size: 0.7vw;
 	}
 
-	h {
+	.header {
 		font-size: 3vw;
 	}
 
@@ -109,7 +109,7 @@ p.desc {
 		font-size: 1vw;
 	}
 
-	h {
+	.header {
 		font-size: 4vw;
 	}
 
@@ -128,7 +128,7 @@ p.desc {
 		font-size: 1.5vw;
 	}
 
-	h {
+	.header {
 		font-size: 5.5vw;
 	}
 

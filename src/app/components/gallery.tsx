@@ -111,7 +111,7 @@ export default function Gallery({ imagesSource, details }: Props) {
 								{detail.youtube ? <AiOutlineYoutube /> : <IoGlobeOutline />}
 								{detail.anchor}
 							</a>
-							<h1>{detail.header}</h1>
+							<h1 className="header">{detail.header}</h1>
 							<p className="desc">{detail.paragraph}</p>
 							<div className="btn"></div>
 						</div>
