@@ -1,10 +1,19 @@
+"use client";
+
 import styles from "./page.module.css";
 import Navigation from "./components/navigation";
 import MouseTrail from "./components/mouse.trail";
 import MyScrollBar from "./scrollbar";
 import Gallery from "./components/gallery";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+	const [isSSR, setIsSSR] = useState(true);
+
+	useEffect(() => {
+		setIsSSR(false);
+	}, []);
+
 	const imagesCSSJourney: string[] = [
 		"https://cdn.discordapp.com/attachments/596603420878700555/1159872727973367848/Showcase.png",
 		"https://media.discordapp.net/attachments/596603420878700555/1159872728317313174/Showcase_1.png",
@@ -43,6 +52,8 @@ export default function Home() {
 				"A cool button with mouse hover effect that will highlight the area around the mouse",
 		},
 	];
+
+	if (isSSR) return <div className={styles.title}>Loading ...</div>;
 
 	return (
 		<>
