@@ -2,9 +2,7 @@ import Image from "next/image";
 import { IoLogoInstagram, IoLogoGithub, IoLogoDiscord } from "react-icons/io5";
 import "./navigation.css";
 
-type Props = {};
-
-function Navigation({}: Props) {
+function Navigation() {
 	return (
 		<div className="navigation pin">
 			<Image
