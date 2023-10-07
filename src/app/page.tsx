@@ -9,9 +9,11 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
 	const [isSSR, setIsSSR] = useState(true);
+	const [isMobile, setIsMobile] = useState(false);
 
 	useEffect(() => {
 		setIsSSR(false);
+		setIsMobile(window.innerWidth < 768);
 	}, []);
 
 	const imagesCSSJourney: string[] = [
@@ -61,8 +63,8 @@ export default function Home() {
 			<MyScrollBar />
 			<Gallery imagesSource={imagesCSSJourney} details={detailsCSSJourney} />
 			<div style={{ height: "100vh", width: "100vw" }}></div>
-			<Navigation />
-			<MouseTrail />
+			{<Navigation />}
+			{!isMobile && <MouseTrail />}
 		</>
 	);
 }
