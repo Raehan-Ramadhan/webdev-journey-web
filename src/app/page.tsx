@@ -6,6 +6,7 @@ import MouseTrail from "./components/mouse.trail";
 import MyScrollBar from "./scrollbar";
 import Gallery from "./components/gallery";
 import { useEffect, useState } from "react";
+import GalleryMobile from "./components/gallery.mobile";
 
 export default function Home() {
 	const [isSSR, setIsSSR] = useState(true);
@@ -13,7 +14,7 @@ export default function Home() {
 
 	useEffect(() => {
 		setIsSSR(false);
-		setIsMobile(window.innerWidth < 768);
+		setIsMobile(window.innerWidth <= 768 || window.innerHeight <= 768);
 	}, []);
 
 	const imagesCSSJourney: string[] = [
@@ -61,9 +62,17 @@ export default function Home() {
 		<>
 			<div className={styles.title}> Design. Develop. Build. </div>
 			<MyScrollBar />
-			<Gallery imagesSource={imagesCSSJourney} details={detailsCSSJourney} />
+			{isMobile ? (
+				<GalleryMobile
+					details={detailsCSSJourney.map((detail, index) => {
+						return { ...detail, image: imagesCSSJourney[index] };
+					})}
+				/>
+			) : (
+				<Gallery imagesSource={imagesCSSJourney} details={detailsCSSJourney} />
+			)}
 			<div style={{ height: "100vh", width: "100vw" }}></div>
-			{<Navigation />}
+			<Navigation />
 			{!isMobile && <MouseTrail />}
 		</>
 	);
