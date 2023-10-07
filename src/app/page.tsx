@@ -14,7 +14,7 @@ export default function Home() {
 
 	useEffect(() => {
 		setIsSSR(false);
-		setIsMobile(window.innerWidth <= 768 || window.innerHeight <= 768);
+		setIsMobile(window.innerWidth < 768 || window.innerHeight < 768);
 	}, []);
 
 	const imagesCSSJourney: string[] = [
