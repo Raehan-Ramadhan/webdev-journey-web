@@ -1,12 +1,13 @@
 "use client";
 
 import styles from "./page.module.css";
+import { useEffect, useState } from "react";
 import Navigation from "./components/navigation";
 import MouseTrail from "./components/mouse.trail";
 import MyScrollBar from "./scrollbar";
 import Gallery from "./components/gallery";
-import { useEffect, useState } from "react";
 import GalleryMobile from "./components/gallery.mobile";
+import NavigationMobile from "./components/navigation.mobile";
 
 export default function Home() {
 	const [isSSR, setIsSSR] = useState(true);
@@ -72,7 +73,7 @@ export default function Home() {
 				<Gallery imagesSource={imagesCSSJourney} details={detailsCSSJourney} />
 			)}
 			<div style={{ height: "100vh", width: "100vw" }}></div>
-			<Navigation />
+			{isMobile ? <NavigationMobile /> : <Navigation />}
 			{!isMobile && <MouseTrail />}
 		</>
 	);
