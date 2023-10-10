@@ -62,19 +62,28 @@ export default function Home() {
 	return (
 		<>
 			<div className={styles.title}> Design. Develop. Build. </div>
-			<MyScrollBar />
+
 			{isMobile ? (
-				<GalleryMobile
-					details={detailsCSSJourney.map((detail, index) => {
-						return { ...detail, image: imagesCSSJourney[index] };
-					})}
-				/>
+				<>
+					<NavigationMobile />
+					<GalleryMobile
+						details={detailsCSSJourney.map((detail, index) => {
+							return { ...detail, image: imagesCSSJourney[index] };
+						})}
+					/>
+				</>
 			) : (
-				<Gallery imagesSource={imagesCSSJourney} details={detailsCSSJourney} />
+				<>
+					<MouseTrail />
+					<MyScrollBar />
+					<Navigation />
+					<Gallery
+						imagesSource={imagesCSSJourney}
+						details={detailsCSSJourney}
+					/>
+				</>
 			)}
 			<div style={{ height: "100vh", width: "100vw" }}></div>
-			{isMobile ? <NavigationMobile /> : <Navigation />}
-			{!isMobile && <MouseTrail />}
 		</>
 	);
 }
