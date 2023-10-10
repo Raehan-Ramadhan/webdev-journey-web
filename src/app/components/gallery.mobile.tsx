@@ -35,13 +35,9 @@ export default function GalleryMobile({ details }: Props) {
 						</a>
 					</div>
 
-					<Image
-						alt=""
-						src={detail.image}
-						height={window.innerWidth * 0.5 - 20}
-						width={window.innerWidth * 0.8}
-						className={styles.image}
-					></Image>
+					<div className={styles.image}>
+						<Image alt="" src={detail.image} fill={true}></Image>
+					</div>
 				</div>
 			))}
 		</div>
