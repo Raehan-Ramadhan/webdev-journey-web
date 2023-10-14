@@ -9,6 +9,10 @@
 	align-items: center;
 	justify-content: space-between;
 	padding: 0 40px;
+	border-bottom: 2px solid white;
+	background-color: rgb(200, 200, 200, 0.2);
+	backdrop-filter: blur(2px);
+	z-index: 200;
 }
 
 .nav {
