@@ -10,6 +10,7 @@ html {
 	display: flex;
 	justify-content: center;
 	background: linear-gradient(to bottom right, gray, red);
+	background: url(https://source.unsplash.com/JZ51o_-UOY8) -40vw / cover;
 }
 
 .blog-container {
@@ -27,6 +28,6 @@ p,
 ol,
 li {
 	margin: 0;
-	font-size: 17px;
+	font-size: 18px;
 	line-height: 32px;
 }
