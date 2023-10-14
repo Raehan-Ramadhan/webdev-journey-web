@@ -3,16 +3,17 @@
 	top: 0;
 	left: 0;
 	width: 100vw;
-	background-color: transparent;
-	z-index: 100;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 0 40px;
 	border-bottom: 2px solid white;
 	background-color: rgb(200, 200, 200, 0.2);
-	backdrop-filter: blur(2px);
 	z-index: 200;
+	@supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
+		-webkit-backdrop-filter: blur(2px);
+		backdrop-filter: blur(2px);
+	}
 }
 
 .nav {
