@@ -10,7 +10,8 @@ html {
 	display: flex;
 	justify-content: center;
 	background: linear-gradient(to bottom right, gray, red);
-	background: url(https://source.unsplash.com/JZ51o_-UOY8) -40vw / cover;
+	background: url(https://source.unsplash.com/EytWx3BOrwI) no-repeat center /
+		cover;
 }
 
 .blog-container {
@@ -30,4 +31,42 @@ li {
 	margin: 0;
 	font-size: 18px;
 	line-height: 32px;
+}
+
+@media screen and (max-width: 768px) {
+	.blog-container {
+		width: 90vw;
+		padding: 50px 20px;
+	}
+}
+
+@media screen and (max-width: 480px) {
+	p,
+	ol,
+	li {
+		margin: 0;
+		font-size: 16px;
+		line-height: 28px;
+	}
+
+	.nav a {
+		font-size: 0.8em;
+	}
+	.navigation > img {
+		width: 50px;
+		height: 50px;
+	}
+}
+
+@media screen and (max-width: 350px) {
+	.navigation {
+		padding: 0 10px !important;
+	}
+	.nav a {
+		font-size: 0.7em;
+	}
+	.navigation > img {
+		width: 30px;
+		height: 30px;
+	}
 }
