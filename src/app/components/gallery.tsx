@@ -127,11 +127,6 @@ export default function Gallery({ imagesSource, details }: Props) {
 							style={{
 								background: `url(${image}) no-repeat
 							center/cover`,
-								backgroundColor: `rgba(${
-									((index + 1) / imagesSource.length) * 255
-								},${((index + 1) / imagesSource.length) * 255},${
-									((index + 1) / imagesSource.length) * 255
-								})`,
 								zIndex: imagesSource.length - index,
 							}}
 							key={index}
