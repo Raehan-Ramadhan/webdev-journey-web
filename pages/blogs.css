@@ -1,20 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap");
+
 * {
+	font-family: "inter", sans-serif;
 	box-sizing: border-box;
-	color: white;
+	color: #0e101a;
 }
 
 html {
 	display: flex;
 	justify-content: center;
-	background: linear-gradient(to bottom right, black, red);
+	background: linear-gradient(to bottom right, gray, red);
 }
 
 body {
 	height: 2000vh;
 	width: 50vw;
-	background-color: rgb(20, 20, 20);
+	background-color: white;
 	display: flex;
-	padding: 50px 20px;
+	padding: 50px 40px;
 	margin: 20px 0;
 	justify-content: center;
+}
+
+p,
+ol,
+li {
+	margin: 0;
+	font-size: 17px;
+	line-height: 32px;
 }
