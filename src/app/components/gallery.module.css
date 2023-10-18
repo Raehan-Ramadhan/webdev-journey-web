@@ -2,7 +2,7 @@
 	display: flex;
 }
 
-.right-side {
+.rightSide {
 	width: 50vw;
 	height: 100vh;
 	display: flex;
@@ -13,7 +13,7 @@
 	transform: translateY(0);
 }
 
-.left-side {
+.leftSide {
 	width: 50vw;
 }
 
@@ -23,7 +23,7 @@
 	justify-content: flex-end;
 }
 
-.text-container {
+.textContainer {
 	z-index: 100;
 	width: 50%;
 	padding-right: 25px;
@@ -33,7 +33,7 @@
 	gap: 10px;
 }
 
-.text-container span {
+.textContainer span {
 	color: rgba(255, 255, 255, 0.6);
 	font-size: 0.5vw;
 }
@@ -43,11 +43,11 @@
 	font-weight: 500;
 }
 
-p.desc {
+.desc {
 	font-size: 0.7vw;
 }
 
-.image-container {
+.imageContainer {
 	width: 50%;
 	aspect-ratio: 1;
 	border-radius: 20px;
@@ -81,12 +81,12 @@ p.desc {
 }
 
 @media screen and (max-width: 1700px) {
-	.text-container,
-	.image-container {
+	.textContainer,
+	.imageContainer {
 		width: 55%;
 	}
 
-	.text-container span {
+	.textContainer span {
 		font-size: 0.7vw;
 	}
 
@@ -94,18 +94,18 @@ p.desc {
 		font-size: 3vw;
 	}
 
-	p.desc {
+	.desc {
 		font-size: 0.85vw;
 	}
 }
 
 @media screen and (max-width: 1225px) {
-	.text-container,
-	.image-container {
+	.textContainer,
+	.imageContainer {
 		width: 70%;
 	}
 
-	.text-container span {
+	.textContainer span {
 		font-size: 1vw;
 	}
 
@@ -119,8 +119,8 @@ p.desc {
 }
 
 @media screen and (max-width: 750px) {
-	.text-container,
-	.image-container {
+	.textContainer,
+	.imageContainer {
 		width: 90%;
 	}
 
@@ -132,7 +132,7 @@ p.desc {
 		font-size: 5.5vw;
 	}
 
-	p.desc {
+	.desc {
 		font-size: 1.8vw;
 	}
 }

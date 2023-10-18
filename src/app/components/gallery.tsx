@@ -1,6 +1,6 @@
 "use client";
 
-import "./gallery.css";
+import Style from "./gallery.module.css";
 import { useEffect, useRef } from "react";
 import Scrollbar from "smooth-scrollbar";
 import { IoGlobeOutline } from "react-icons/io5";
@@ -97,13 +97,13 @@ export default function Gallery({ imagesSource, details }: Props) {
 	}, []);
 
 	return (
-		<div className="gallery" ref={gallery}>
-			<div className="left-side">
+		<div className={Style.gallery} ref={gallery}>
+			<div className={Style.leftSide}>
 				{details.map((detail, index) => (
-					<div className="details" key={index}>
-						<div className="text-container">
+					<div className={Style.details} key={index}>
+						<div className={Style.textContainer}>
 							<a
-								className="anchor"
+								className={Style.anchor}
 								href={detail.anchorLink}
 								target="_blank"
 								rel="noopener noreferrer"
@@ -111,19 +111,19 @@ export default function Gallery({ imagesSource, details }: Props) {
 								{detail.youtube ? <AiOutlineYoutube /> : <IoGlobeOutline />}
 								{detail.anchor}
 							</a>
-							<h1 className="header">{detail.header}</h1>
-							<p className="desc">{detail.paragraph}</p>
-							<div className="btn"></div>
+							<h1 className={Style.header}>{detail.header}</h1>
+							<p className={Style.desc}>{detail.paragraph}</p>
+							<div className={Style.btn}></div>
 						</div>
 					</div>
 				))}
 			</div>
 
-			<div className="right-side" ref={rightSide}>
-				<div className="image-container">
+			<div className={Style.rightSide} ref={rightSide}>
+				<div className={Style.imageContainer}>
 					{imagesSource.map((image, index) => (
 						<div
-							className="image"
+							className={Style.image}
 							style={{
 								background: `url(${image}) no-repeat
 							center/cover`,
