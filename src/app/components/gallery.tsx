@@ -15,12 +15,24 @@ interface Props {
 		header: string;
 		paragraph: string;
 	}[];
+	header?: string;
+	colors: string[];
 }
 
-export default function Gallery({ imagesSource, details }: Props) {
+export default function Gallery({
+	imagesSource,
+	details,
+	header,
+	colors,
+}: Props) {
 	const gallery = useRef<HTMLDivElement>(null);
 	const rightSide = useRef<HTMLDivElement>(null);
 	const images = useRef<HTMLDivElement[]>([]);
+	const detailsRef = useRef<HTMLDivElement[]>([]);
+
+	colors.unshift("");
+	colors.push("");
+
 	useEffect(() => {
 		const scrollbar = Scrollbar.get(document.body);
 
@@ -30,6 +42,7 @@ export default function Gallery({ imagesSource, details }: Props) {
 			: 0;
 
 		let offsetY = 0;
+		let bound: number[];
 
 		const refreshVariable = () => {
 			offsetY = scrollbar ? scrollbar.offset.y : offsetY;
@@ -41,6 +54,22 @@ export default function Gallery({ imagesSource, details }: Props) {
 				  window.innerHeight +
 				  offsetY
 				: galleryBottom;
+
+			if (gallery.current && scrollbar) {
+				bound = Array.from(detailsRef.current).map(
+					(detail) =>
+						scrollbar.offset.y +
+						detail.getBoundingClientRect().top -
+						Math.round(window.innerHeight / 2)
+				);
+				bound.unshift(0);
+				bound.push(
+					scrollbar.offset.y +
+						gallery.current.getBoundingClientRect().bottom -
+						Math.round(window.innerHeight / 2)
+				);
+			}
+
 			if (rightSide.current && galleryTop) {
 				// Pin Image
 				rightSide.current.style.transform = `translateY(${Math.min(
@@ -62,7 +91,7 @@ export default function Gallery({ imagesSource, details }: Props) {
 				});
 			}
 		};
-
+		refreshVariable();
 		window.onresize = refreshVariable;
 
 		const listener = (status: { offset: any }) => {
@@ -86,6 +115,13 @@ export default function Gallery({ imagesSource, details }: Props) {
 						0
 					)}% 0)`;
 				});
+
+				// Change Color
+				for (let i = 0; i < colors.length; i++) {
+					if (status.offset.y > bound[i]) {
+						window.document.body.style.background = colors[i];
+					}
+				}
 			}
 		};
 
@@ -94,13 +130,20 @@ export default function Gallery({ imagesSource, details }: Props) {
 		return () => {
 			scrollbar?.removeListener(listener);
 		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
 		<div className={Style.gallery} ref={gallery}>
 			<div className={Style.leftSide}>
 				{details.map((detail, index) => (
-					<div className={Style.details} key={index}>
+					<div
+						className={Style.details}
+						key={index}
+						ref={(element) =>
+							(detailsRef.current[index] = element as HTMLDivElement)
+						}
+					>
 						<div className={Style.textContainer}>
 							<a
 								className={Style.anchor}

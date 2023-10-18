@@ -57,6 +57,8 @@ export default function Home() {
 		},
 	];
 
+	const colorsCSSJourney: string[] = ["#4B657F", "#952123", "#423A3A"];
+
 	if (isSSR) return <div className={styles.title}>Loading ...</div>;
 
 	return (
@@ -80,6 +82,7 @@ export default function Home() {
 					<Gallery
 						imagesSource={imagesCSSJourney}
 						details={detailsCSSJourney}
+						colors={colorsCSSJourney}
 					/>
 				</>
 			)}
