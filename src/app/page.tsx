@@ -80,6 +80,7 @@ export default function Home() {
 					<MyScrollBar />
 					<Navigation />
 					<Gallery
+						title="My Journey in CSS"
 						imagesSource={imagesCSSJourney}
 						details={detailsCSSJourney}
 						colors={colorsCSSJourney}

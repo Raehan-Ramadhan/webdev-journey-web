@@ -15,14 +15,14 @@ interface Props {
 		header: string;
 		paragraph: string;
 	}[];
-	header?: string;
+	title?: string;
 	colors: string[];
 }
 
 export default function Gallery({
 	imagesSource,
 	details,
-	header,
+	title,
 	colors,
 }: Props) {
 	const gallery = useRef<HTMLDivElement>(null);
@@ -60,13 +60,13 @@ export default function Gallery({
 					(detail) =>
 						scrollbar.offset.y +
 						detail.getBoundingClientRect().top -
-						Math.round(window.innerHeight / 2)
+						Math.round((window.innerHeight / 2) * 3)
 				);
 				bound.unshift(0);
 				bound.push(
 					scrollbar.offset.y +
 						gallery.current.getBoundingClientRect().bottom -
-						Math.round(window.innerHeight / 2)
+						Math.round((window.innerHeight / 2) * 3)
 				);
 			}
 
@@ -134,52 +134,55 @@ export default function Gallery({
 	}, []);
 
 	return (
-		<div className={Style.gallery} ref={gallery}>
-			<div className={Style.leftSide}>
-				{details.map((detail, index) => (
-					<div
-						className={Style.details}
-						key={index}
-						ref={(element) =>
-							(detailsRef.current[index] = element as HTMLDivElement)
-						}
-					>
-						<div className={Style.textContainer}>
-							<a
-								className={Style.anchor}
-								href={detail.anchorLink}
-								target="_blank"
-								rel="noopener noreferrer"
-							>
-								{detail.youtube ? <AiOutlineYoutube /> : <IoGlobeOutline />}
-								{detail.anchor}
-							</a>
-							<h1 className={Style.header}>{detail.header}</h1>
-							<p className={Style.desc}>{detail.paragraph}</p>
-							<div className={Style.btn}></div>
-						</div>
-					</div>
-				))}
-			</div>
-
-			<div className={Style.rightSide} ref={rightSide}>
-				<div className={Style.imageContainer}>
-					{imagesSource.map((image, index) => (
+		<>
+			{title && <div className={Style.title}>{title}</div>}
+			<div className={Style.gallery} ref={gallery}>
+				<div className={Style.leftSide}>
+					{details.map((detail, index) => (
 						<div
-							className={Style.image}
-							style={{
-								background: `url(${image}) no-repeat
-							center/cover`,
-								zIndex: imagesSource.length - index,
-							}}
+							className={Style.details}
 							key={index}
 							ref={(element) =>
-								(images.current[index] = element as HTMLDivElement)
+								(detailsRef.current[index] = element as HTMLDivElement)
 							}
-						></div>
+						>
+							<div className={Style.textContainer}>
+								<a
+									className={Style.anchor}
+									href={detail.anchorLink}
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									{detail.youtube ? <AiOutlineYoutube /> : <IoGlobeOutline />}
+									{detail.anchor}
+								</a>
+								<h1 className={Style.header}>{detail.header}</h1>
+								<p className={Style.desc}>{detail.paragraph}</p>
+								<div className={Style.btn}></div>
+							</div>
+						</div>
 					))}
 				</div>
+
+				<div className={Style.rightSide} ref={rightSide}>
+					<div className={Style.imageContainer}>
+						{imagesSource.map((image, index) => (
+							<div
+								className={Style.image}
+								style={{
+									background: `url(${image}) no-repeat
+							center/cover`,
+									zIndex: imagesSource.length - index,
+								}}
+								key={index}
+								ref={(element) =>
+									(images.current[index] = element as HTMLDivElement)
+								}
+							></div>
+						))}
+					</div>
+				</div>
 			</div>
-		</div>
+		</>
 	);
 }
