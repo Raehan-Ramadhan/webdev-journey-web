@@ -6,7 +6,7 @@ export default function NavigationMobile() {
 	return (
 		<div className={styles.navigation + " pin"}>
 			<Image
-				src="https://cdn.discordapp.com/attachments/598648077078757376/1141024078216577095/graycat6.svg"
+				src="https://ucarecdn.com/310a2e1e-3ce4-4c20-9ea0-b6cd9375161b/"
 				alt="Logo"
 				width={70}
 				height={70}
