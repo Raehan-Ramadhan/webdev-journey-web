@@ -19,9 +19,9 @@ export default function Home() {
 	}, []);
 
 	const imagesCSSJourney: string[] = [
-		"https://cdn.discordapp.com/attachments/596603420878700555/1159872727973367848/Showcase.png",
-		"https://media.discordapp.net/attachments/596603420878700555/1159872728317313174/Showcase_1.png",
-		"https://cdn.discordapp.com/attachments/596603420878700555/1159872727642030170/Showcase_2.png",
+		"https://ucarecdn.com/b2a1cd69-3ff6-4996-a58a-94535934d7d1/",
+		"https://ucarecdn.com/a93b3edb-a1a3-4229-91ee-785a7dc6fbce/",
+		"https://ucarecdn.com/55df829a-5af7-44f5-aaf9-907f15de4a3b/",
 	];
 
 	const detailsCSSJourney: {
