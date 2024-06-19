@@ -6,7 +6,7 @@ function Navigation() {
 	return (
 		<div className="navigation pin">
 			<Image
-				src="https://cdn.discordapp.com/attachments/596603420878700555/1164233084707815526/graycat_white.svg"
+				src="https://ucarecdn.com/87227368-ac99-4a13-a904-87d4dcc89921/"
 				alt="Logo"
 				width={70}
 				height={70}
