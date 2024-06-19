@@ -80,7 +80,8 @@ export default function Gallery({
 				// Clip Image
 
 				let a =
-					((offsetY - galleryTop) / galleryBottom) * images.current.length;
+					((offsetY - galleryTop) / galleryBottom) *
+					(images.current.length + 1);
 				a = Math.min(Math.max(a, 0), images.current.length - 1);
 
 				images.current.forEach((image, Index) => {
@@ -106,7 +107,7 @@ export default function Gallery({
 
 				let a =
 					((status.offset.y - galleryTop) / galleryBottom) *
-					images.current.length;
+					(images.current.length + 1);
 				a = Math.min(Math.max(a, 0), images.current.length - 1);
 
 				images.current.forEach((image, Index) => {
