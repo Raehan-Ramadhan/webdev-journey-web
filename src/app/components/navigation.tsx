@@ -1,11 +1,11 @@
-import Image from "next/image";
+import UploadcareImage from "@uploadcare/nextjs-loader";
 import { IoLogoInstagram, IoLogoGithub, IoLogoDiscord } from "react-icons/io5";
 import "./navigation.css";
 
 function Navigation() {
 	return (
 		<div className="navigation pin">
-			<Image
+			<UploadcareImage
 				src="https://ucarecdn.com/87227368-ac99-4a13-a904-87d4dcc89921/"
 				alt="Logo"
 				width={70}

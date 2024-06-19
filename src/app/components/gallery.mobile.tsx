@@ -1,7 +1,7 @@
 import styles from "./gallery.mobile.module.css";
 import { IoGlobeOutline } from "react-icons/io5";
 import { AiOutlineYoutube } from "react-icons/ai";
-import Image from "next/image";
+import UploadcareImage from "@uploadcare/nextjs-loader";
 
 interface Props {
 	details: {
@@ -36,7 +36,11 @@ export default function GalleryMobile({ details }: Props) {
 					</div>
 
 					<div className={styles.image}>
-						<Image alt="" src={detail.image} fill={true}></Image>
+						<UploadcareImage
+							alt=""
+							src={detail.image}
+							fill={true}
+						></UploadcareImage>
 					</div>
 				</div>
 			))}
