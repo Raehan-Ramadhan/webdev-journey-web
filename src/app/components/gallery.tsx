@@ -79,10 +79,14 @@ export default function Gallery({
 
 				// Clip Image
 
-				let a =
-					((offsetY - galleryTop) / galleryBottom) *
-					(images.current.length + 1);
-				a = Math.min(Math.max(a, 0), images.current.length - 1);
+				let a = Math.min(
+					Math.max(
+						((offsetY - galleryTop) / galleryBottom) *
+							(images.current.length + 1),
+						0
+					),
+					images.current.length - 1
+				);
 
 				images.current.forEach((image, Index) => {
 					image.style.clipPath = `inset(0 0 ${Math.max(
@@ -105,10 +109,14 @@ export default function Gallery({
 
 				// Clip Image
 
-				let a =
-					((status.offset.y - galleryTop) / galleryBottom) *
-					(images.current.length + 1);
-				a = Math.min(Math.max(a, 0), images.current.length - 1);
+				let a = Math.min(
+					Math.max(
+						((offsetY - galleryTop) / galleryBottom) *
+							(images.current.length + 1),
+						0
+					),
+					images.current.length - 1
+				);
 
 				images.current.forEach((image, Index) => {
 					image.style.clipPath = `inset(0 0 ${Math.max(
